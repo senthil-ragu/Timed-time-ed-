@@ -1,0 +1,104 @@
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --bg-base:        #0f1117;
+  --bg-surface:     #181c27;
+  --bg-card:        #1e2335;
+  --bg-card-hover:  #232840;
+  --bg-input:       #141824;
+
+  --accent:         #4ade80;   /* soft emerald — easy on eyes */
+  --accent-dim:     rgba(74, 222, 128, 0.15);
+  --accent-glow:    rgba(74, 222, 128, 0.30);
+  --accent-hover:   #22c55e;
+
+  --danger:         #f87171;
+  --danger-dim:     rgba(248, 113, 113, 0.15);
+  --warning:        #fbbf24;
+  --info:           #60a5fa;
+  --info-dim:       rgba(96, 165, 250, 0.15);
+
+  --text-primary:   #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted:     #64748b;
+
+  --border:         rgba(255, 255, 255, 0.07);
+  --border-focus:   rgba(74, 222, 128, 0.45);
+
+  --radius-sm:      6px;
+  --radius-md:      12px;
+  --radius-lg:      18px;
+  --radius-xl:      24px;
+
+  --shadow-card:    0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-glow:    0 0 24px rgba(74, 222, 128, 0.20);
+
+  --font-mono:      'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --transition:     0.18s ease;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── Bootstrap Overrides ────────────────────────────────────── */
+.btn:focus-visible { box-shadow: 0 0 0 3px var(--accent-glow) !important; outline: none; }
+.form-control:focus, .form-select:focus {
+  background-color: var(--bg-input) !important;
+  border-color: var(--border-focus) !important;
+  box-shadow: 0 0 0 3px var(--accent-dim) !important;
+  color: var(--text-primary) !important;
+}
+.modal-content {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+}
+.modal-backdrop { backdrop-filter: blur(4px); }
+
+/* ─── Utility classes ────────────────────────────────────────── */
+.text-accent   { color: var(--accent) !important; }
+.text-muted-lt { color: var(--text-muted) !important; }
+.text-secondary-lt { color: var(--text-secondary) !important; }
+.bg-surface    { background-color: var(--bg-surface) !important; }
+.bg-card       { background-color: var(--bg-card) !important; }
+.border-subtle { border: 1px solid var(--border) !important; }
+.radius-md     { border-radius: var(--radius-md) !important; }
+.radius-lg     { border-radius: var(--radius-lg) !important; }
+.radius-xl     { border-radius: var(--radius-xl) !important; }
+.font-mono     { font-family: var(--font-mono) !important; }
+
+/* ─── Fade-in animation ──────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up { animation: fadeInUp 0.35s ease forwards; }
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 var(--accent-glow); }
+  70%  { box-shadow: 0 0 0 14px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+.pulse-ring { animation: pulse-ring 2s ease infinite; }
+
+@keyframes tick {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.tick-anim { animation: tick 1s step-end infinite; }
